@@ -1,41 +1,43 @@
-// traemos a express
-const express = require("express");
-const faker = require("faker");
+const express = require('express');
+const routerApi = require('./routes');
 
-// creamos una aplicación
 const app = express();
-
-//le decimos el puerto en que queremos que corra la aplicación
 const port = 3000;
 
-//definimos la ruta
-// tiene un callback que va a ejecutar la respuesta que enviemos al cliente.
-//el callback siempre tiene dos parámetros "req" y "res".
-app.get('/products', (req, res) => {
-  // Indico que en los query parameter me llegará uno que es de size, 
-  //uego abajo digo que si no viene nada, tome por defecto 10
-  const { size } = req.query;
-  const limit = size || 10;
 
-  const products = {
-    size: limit,
-    items: []
-  };
+routerApi(app);
 
-  for (let index = 0; index < limit; index++) {
-    products.items.push({
-      name: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
-    })
-  }
-  
-  res.json(products);
-});
+// app.get('/', (req, res) => {
+//   res.send('Hola mi server en express');
+// });
 
-//le decimos a la aplicación en que puesto escuchar
-// además creamos un callback que nos avisará cuando esté corriendo
+// app.get('/nueva-ruta', (req, res) => {
+//   res.send('Hola, soy una nueva ruta');
+// });
+
+
+
+
+// app.get('/users', (req, res) => {
+//   const { limit, offset } = req.query;
+//   if (limit && offset) {
+//     res.json({
+//       limit,
+//       offset
+//     });
+//   } else {
+//     res.send('No hay parametros');
+//   }
+// });
+
+// app.get('/categories/:categoryId/products/:productId', (req, res) => {
+//   const { categoryId, productId } = req.params;
+//   res.json({
+//     categoryId,
+//     productId,
+//   });
+// })
+
 app.listen(port, () => {
-  console.log("Mi puerto es " + port);
+  console.log('Mi port' +  port);
 });
-
