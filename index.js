@@ -5,6 +5,8 @@ const app = express();
 const port = 3000;
 
 
+app.use(express.json());
+
 routerApi(app);
 
 // app.get('/', (req, res) => {
@@ -39,5 +41,5 @@ routerApi(app);
 // })
 
 app.listen(port, () => {
-  console.log('Mi port' +  port);
+  console.log('El puerto donde estoy funcando maravillosamente es' +  port);
 });
