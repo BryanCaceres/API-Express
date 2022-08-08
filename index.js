@@ -41,5 +41,5 @@ routerApi(app);
 // })
 
 app.listen(port, () => {
-  console.log('El puerto donde estoy funcando maravillosamente es' +  port);
+  console.log('El puerto donde estoy funcando maravillosamente es ' +  port);
 });
